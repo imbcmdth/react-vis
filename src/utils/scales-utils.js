@@ -496,6 +496,13 @@ export function getScaleObjectFromProps(props, attr) {
     return scaleObject;
   }
 
+  // If attribute adjust is false, don't adjust the property at all
+  // Best for custom vertical rectangle graphs that you want to always
+  // be full-width
+  if (props[`${attr}Adjust`] === false) {
+    return scaleObject;
+  }
+
   const {type} = scaleObject;
   // Depending on what type the scale is, apply different adjustments. Distances
   // for the ordinal and category scales are even, equal domains cannot be
